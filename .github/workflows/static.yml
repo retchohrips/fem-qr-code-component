@@ -48,8 +48,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Screenshot Github page
-        uses: swinton/screenshot-website@v1.x
+        uses: alexrogalskiy/github-action-screenshots@master
         with:
-          source: ${{ needs.deploy.outputs.page_url }}
-          destination: screenshot-desktop.png
-    
+          url: ${{ needs.deploy.outputs.page_url }}
+          name: 'screenshot'
+          path: '.github/images'
+          extension: 'png'
