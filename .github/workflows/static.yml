@@ -12,6 +12,7 @@ on:
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -47,6 +48,8 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Make images dir
         run: mkdir -p .github/images
       - name: Screenshot Github page
@@ -56,10 +59,6 @@ jobs:
           name: 'screenshot'
           path: '.github/images'
           extension: 'png'
-      - name: Commit
-        run: |
-          git config --local user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git config --local user.name 'GitHub Action'
-          git add --all
-          git commit -m 'chore: update screenshot'
-          git push
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: chore: update screenshot
