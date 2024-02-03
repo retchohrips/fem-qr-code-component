@@ -52,5 +52,5 @@ jobs:
         with:
           url: ${{ needs.deploy.outputs.page_url }}
           name: 'screenshot'
-          path: '.github/images'
+          # path: '.github/images'
           extension: 'png'
