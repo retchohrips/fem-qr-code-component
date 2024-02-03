@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Make images dir
-        run: mkdir .github/images
+        run: mkdir -p .github/images
       - name: Screenshot Github page
         uses: alexrogalskiy/github-action-screenshots@master
         with:
