@@ -27,6 +27,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,3 +43,13 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
+  screenshot:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Screenshot Github page
+        uses: swinton/screenshot-website@v1.x
+        with:
+          source: ${{ needs.deploy.outputs.page_url }}
+          destination: screenshot-desktop.png
+    
